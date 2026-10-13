@@ -1,0 +1,21 @@
+# Configuration files bundled by mac-setup. Explicit allowlist.
+aerospace/aerospace.toml
+alacritty/alacritty.toml
+alacritty/themes/themes/github_dark.toml
+atuin/config.toml
+karabiner/karabiner.json
+karabiner/scripts/alacritty/open_new_window.sh
+karabiner/scripts/chrome/open_incognito.sh
+karabiner/scripts/chrome/open_profile.sh
+karabiner/scripts/finder/open_window.sh
+karabiner/scripts/vscode/open_new_window.sh
+sketchybar/plugins/aerospace.sh
+sketchybar/plugins/battery.sh
+sketchybar/plugins/clock.sh
+sketchybar/plugins/colors.sh
+sketchybar/plugins/front_app.sh
+sketchybar/plugins/icons.sh
+sketchybar/plugins/space.sh
+sketchybar/plugins/volume.sh
+sketchybar/sketchybarrc
+unsplash/get_wallpaper_accent.py

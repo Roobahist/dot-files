@@ -1,0 +1,19 @@
+name: Notify mac-setup
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request a new mac-setup profile snapshot
+        env:
+          GH_TOKEN: ${{ secrets.MAC_SETUP_DISPATCH_TOKEN }}
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "Dispatch secret not configured; mac-setup will synchronize on its hourly schedule."
+            exit 0
+          fi
+          gh api -X POST repos/Roobahist/mac-setup/dispatches -f event_type=dotfiles-updated
