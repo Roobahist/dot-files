@@ -50,4 +50,5 @@ rules = karabiner["profiles"][0]["complex_modifications"]["rules"]
 assert len([r for r in rules if r.get("enabled") is False]) == 1
 assert sum(r["description"].startswith("Example (disabled)") for r in rules) == 1
 assert len(rules) == 5
+assert (ROOT / "sketchybar/sketchybarrc").stat().st_mode & 0o111, "SketchyBar entrypoint must be executable"
 print(f"Portable profile validated: {len(files)} configuration files")
