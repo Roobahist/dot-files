@@ -2,7 +2,7 @@
 
 Public, machine-independent configuration for AeroSpace, Alacritty, Atuin, Karabiner-Elements, SketchyBar, and a wallpaper color helper.
 
-This repository is the source of truth for portable configuration used by [mac-setup](https://github.com/Roobahist/mac-setup). It contains no account credentials, shell history, machine-specific exports, or personal grading automations.
+This repository is the source of truth for portable configuration used by [mac-setup](https://github.com/Roobahist/mac-setup). It contains no account credentials, shell history, machine-specific exports, or private workflow automations.
 
 ## Install
 
