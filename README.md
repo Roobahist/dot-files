@@ -57,7 +57,7 @@ The AI workspace uses the runtime ID `ai` consistently in persistent workspaces,
 keyboard destinations, app routing and SketchyBar. Older personal configurations
 may call the same workspace `chatgpt`. The app migrates that known legacy identity.
 
-Karabiner retains separate Chrome, Alacritty, Visual Studio Code and Finder rules.
+Karabiner retains separate Chrome, Alacritty, Visual Studio Code, Finder and Telegram rules.
 Active rules match the local reference after replacing personal script paths with
 quoted `$HOME` paths. Private disabled automations are excluded; the generic disabled
 example is public documentation. Chrome profile numbers are local slot numbers; no
@@ -65,5 +65,6 @@ Chrome account names or profile databases are shared. SF Pro workspace symbols u
 SF Pro; numbers use Hack Nerd Font. Install both fonts before testing the bar.
 
 Telegram is routed to Messages, whose default destination shortcut is Option+0.
-There is no separate Telegram launch shortcut in the checked reference Karabiner
-configuration. App launch shortcuts from other utilities are not exported here.
+Option+T opens or focuses Telegram through its separate Karabiner rule. This binding
+was previously managed by Raycast; remove that Raycast app hotkey when migrating
+an existing machine so Karabiner is the sole owner. No Raycast databases are exported.

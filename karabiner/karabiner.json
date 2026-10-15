@@ -9939,6 +9939,30 @@
             ]
           },
           {
+            "description": "Telegram",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "option"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/bin/open -b ru.keepcoder.Telegram"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Example (disabled): right Command sends 5 then Z",
             "enabled": false,
             "manipulators": [
