@@ -50,3 +50,20 @@ This repository begins with a clean, independent history. The original private d
 `mac-setup` bundles versioned snapshots of the portable files from this repository so its releases can run without GitHub access. Changes here trigger a synchronization pull request in `mac-setup` when the optional dispatch secret is configured; a scheduled check is the fallback. `mac-setup`'s Vorssaint profile remains separate.
 
 Do not use the `mac-setup` profile installer to overwrite a configuration directory you are intentionally maintaining as a symlink to this checkout. Manage that linked configuration with `git pull` and `apply.sh` instead.
+
+## Reference behavior and portability
+
+The AI workspace uses the runtime ID `ai` consistently in persistent workspaces,
+keyboard destinations, app routing and SketchyBar. Older personal configurations
+may call the same workspace `chatgpt`. The app migrates that known legacy identity.
+
+Karabiner retains separate Chrome, Alacritty, Visual Studio Code and Finder rules.
+Active rules match the local reference after replacing personal script paths with
+quoted `$HOME` paths. Private disabled automations are excluded; the generic disabled
+example is public documentation. Chrome profile numbers are local slot numbers; no
+Chrome account names or profile databases are shared. SF Pro workspace symbols use
+SF Pro; numbers use Hack Nerd Font. Install both fonts before testing the bar.
+
+Telegram is routed to Messages, whose default destination shortcut is Option+0.
+There is no separate Telegram launch shortcut in the checked reference Karabiner
+configuration. App launch shortcuts from other utilities are not exported here.

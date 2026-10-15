@@ -15,7 +15,7 @@ assert len(files) == len(set(files)) and files, "Bad shared file manifest"
 EXTRA_FILES = {
     ".gitignore", "README.md", "apply.sh", "install.sh",
     "setup-global-gitignore.sh", "mac-setup-files.txt", "scripts/check-public.py",
-    ".github/workflows/ci.yml", ".github/workflows/notify-mac-setup.yml",
+    "scripts/test-wallpaper-accent.py", ".github/workflows/ci.yml", ".github/workflows/notify-mac-setup.yml",
 }
 actual = set(subprocess.check_output(["git", "-C", str(ROOT), "ls-files", "-z"]).decode().split("\0"))
 actual.discard("")
@@ -50,5 +50,19 @@ rules = karabiner["profiles"][0]["complex_modifications"]["rules"]
 assert len([r for r in rules if r.get("enabled") is False]) == 1
 assert sum(r["description"].startswith("Example (disabled)") for r in rules) == 1
 assert len(rules) == 5
+assert [r["description"] for r in rules if r.get("enabled", True)] == [
+    "Chrome", "Alacritty", "Visual Studio Code", "Finder"]
+aerospace = tomllib.loads((ROOT / "aerospace/aerospace.toml").read_text())
+assert "ai" in aerospace["persistent-workspaces"]
+assert "chatgpt" not in aerospace["persistent-workspaces"]
+bindings = aerospace["mode"]["main"]["binding"]
+assert bindings["alt-backtick"] == "workspace ai"
+assert bindings["alt-0"] == "workspace messages"
+assert any("ru.keepcoder.Telegram" in str(r.get("if")) and
+           "move-node-to-workspace messages" in r["run"]
+           for r in aerospace["on-window-detected"])
+bar = (ROOT / "sketchybar/sketchybarrc").read_text()
+assert "chatgpt)" not in bar and "ai)" in bar
+assert 'echo "SF Pro:Regular:14.5"' in bar
 assert (ROOT / "sketchybar/sketchybarrc").stat().st_mode & 0o111, "SketchyBar entrypoint must be executable"
 print(f"Portable profile validated: {len(files)} configuration files")
