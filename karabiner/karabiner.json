@@ -9963,6 +9963,30 @@
             ]
           },
           {
+            "description": "WhatsApp",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": [
+                      "option"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/bin/open -b net.whatsapp.WhatsApp"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Example (disabled): right Command sends 5 then Z",
             "enabled": false,
             "manipulators": [

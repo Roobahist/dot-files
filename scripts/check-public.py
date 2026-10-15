@@ -49,9 +49,9 @@ assert len(karabiner["profiles"]) == 1
 rules = karabiner["profiles"][0]["complex_modifications"]["rules"]
 assert len([r for r in rules if r.get("enabled") is False]) == 1
 assert sum(r["description"].startswith("Example (disabled)") for r in rules) == 1
-assert len(rules) == 6
+assert len(rules) == 7
 assert [r["description"] for r in rules if r.get("enabled", True)] == [
-    "Chrome", "Alacritty", "Visual Studio Code", "Finder", "Telegram"]
+    "Chrome", "Alacritty", "Visual Studio Code", "Finder", "Telegram", "WhatsApp"]
 aerospace = tomllib.loads((ROOT / "aerospace/aerospace.toml").read_text())
 assert "ai" in aerospace["persistent-workspaces"]
 assert "chatgpt" not in aerospace["persistent-workspaces"]
@@ -69,3 +69,6 @@ print(f"Portable profile validated: {len(files)} configuration files")
 
 telegram = next(r for r in rules if r["description"] == "Telegram")
 assert telegram["manipulators"] == [{'type': 'basic', 'from': {'key_code': 't', 'modifiers': {'mandatory': ['option'], 'optional': ['caps_lock']}}, 'to': [{'shell_command': '/usr/bin/open -b ru.keepcoder.Telegram'}]}]
+
+whatsapp = next(r for r in rules if r["description"] == "WhatsApp")
+assert whatsapp["manipulators"] == [{'type': 'basic', 'from': {'key_code': 'w', 'modifiers': {'mandatory': ['option'], 'optional': ['caps_lock']}}, 'to': [{'shell_command': '/usr/bin/open -b net.whatsapp.WhatsApp'}]}]
