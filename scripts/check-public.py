@@ -15,7 +15,7 @@ assert len(files) == len(set(files)) and files, "Bad shared file manifest"
 EXTRA_FILES = {
     ".gitignore", "README.md", "apply.sh", "install.sh",
     "setup-global-gitignore.sh", "mac-setup-files.txt", "scripts/check-public.py",
-    "scripts/test-wallpaper-accent.py", ".github/workflows/ci.yml", ".github/workflows/notify-mac-setup.yml",
+    "scripts/test-wallpaper-accent.py", "scripts/test-macos-wrapper.py", "macos/README.md", "macos/apply.sh", ".github/workflows/ci.yml", ".github/workflows/notify-mac-setup.yml",
 }
 actual = set(subprocess.check_output(["git", "-C", str(ROOT), "ls-files", "-z"]).decode().split("\0"))
 actual.discard("")
@@ -33,7 +33,7 @@ PATTERNS = (
 for name in files:
     relative = pathlib.PurePosixPath(name)
     assert not relative.is_absolute() and ".." not in relative.parts
-    assert relative.parts[0] in {"aerospace", "alacritty", "atuin", "karabiner", "sketchybar", "unsplash"}
+    assert relative.parts[0] in {"aerospace", "alacritty", "atuin", "karabiner", "sketchybar", "unsplash", "macos"}
     target = ROOT / relative
     assert target.is_file() and not target.is_symlink(), name
     text = target.read_text()
@@ -72,3 +72,15 @@ assert telegram["manipulators"] == [{'type': 'basic', 'from': {'key_code': 't', 
 
 whatsapp = next(r for r in rules if r["description"] == "WhatsApp")
 assert whatsapp["manipulators"] == [{'type': 'basic', 'from': {'key_code': 'w', 'modifiers': {'mandatory': ['option'], 'optional': ['caps_lock']}}, 'to': [{'shell_command': '/usr/bin/open -b net.whatsapp.WhatsApp'}]}]
+
+macos = json.loads((ROOT / "macos/preferences.json").read_text())
+assert macos["version"] == 1 and type(macos["enabled"]) is bool
+assert macos["settings"] and len({s["id"] for s in macos["settings"]}) == len(macos["settings"])
+assert len({(s["domain"], s["key"]) for s in macos["settings"]}) == len(macos["settings"])
+for setting in macos["settings"]:
+    assert type(setting["enabled"]) is bool and "value" in setting
+    assert re.fullmatch(r"NSGlobalDomain|com\.apple\.[A-Za-z0-9.-]+", setting["domain"])
+    assert setting.get("restart") in (None, "Dock", "Finder", "SystemUIServer")
+    if setting["key"] in ("persistent-apps", "persistent-others"):
+        assert setting["value"] == [], "Do not publish personal Dock tiles"
+print("Shared macOS preferences contain only reviewed portable settings")

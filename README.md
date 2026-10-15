@@ -1,6 +1,6 @@
 # Portable macOS dotfiles
 
-Public, machine-independent configuration for AeroSpace, Alacritty, Atuin, Karabiner-Elements, SketchyBar, and a wallpaper color helper.
+Public, machine-independent configuration for AeroSpace, Alacritty, Atuin, Karabiner-Elements, SketchyBar, a wallpaper color helper, and shared macOS preferences.
 
 This repository is the source of truth for portable configuration used by [mac-setup](https://github.com/Roobahist/mac-setup). It contains no account credentials, shell history, machine-specific exports, or private workflow automations.
 
@@ -24,7 +24,7 @@ git pull --ff-only
 bash apply.sh
 ```
 
-The links point to files in the clone, so most changes are visible to applications as soon as the pull completes. Some apps require a reload or new session.
+The links point to files in the clone, so most changes are visible to applications as soon as the pull completes. Some apps require a reload or new session. macOS itself does not watch `macos/preferences.json`; `apply.sh` reviews and applies it through Mac Setup before reloading the application profiles.
 
 ## Layout
 
@@ -34,6 +34,7 @@ The links point to files in the clone, so most changes are visible to applicatio
 - `karabiner/`: keyboard configuration and app-launch scripts
 - `sketchybar/`: bar configuration and plugins
 - `unsplash/`: local wallpaper accent helper
+- `macos/`: one editable preference file, with per-setting and whole-profile on/off controls; [usage](macos/README.md)
 
 ## Portable paths and custom mappings
 

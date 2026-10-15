@@ -19,3 +19,4 @@ sketchybar/plugins/space.sh
 sketchybar/plugins/volume.sh
 sketchybar/sketchybarrc
 unsplash/get_wallpaper_accent.py
+macos/preferences.json
