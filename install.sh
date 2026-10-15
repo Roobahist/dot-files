@@ -14,6 +14,7 @@ MANAGED=(
   karabiner
   sketchybar
   unsplash
+  macos
 )
 
 mkdir -p "$CONFIG_DIR" "$BACKUP_DIR"
@@ -49,5 +50,6 @@ done
 
 echo
 echo "Installation complete."
+echo "macOS preferences are linked, not applied automatically. Review: bash macos/apply.sh plan"
 echo "Any replaced local configuration was moved to:"
 echo "  $BACKUP_DIR"
