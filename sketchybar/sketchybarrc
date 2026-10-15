@@ -87,7 +87,7 @@ sketchybar --add event aerospace_workspace_change
 
 workspace_icon() {
   case "$1" in
-    chatgpt)  echo "$ICON_CHATGPT" ;;
+    ai)  echo "$ICON_CHATGPT" ;;
     music)    echo "$ICON_MUSIC" ;;
     messages) echo "$ICON_MESSAGES" ;;
     notes)    echo "$ICON_NOTES" ;;
@@ -113,8 +113,8 @@ workspace_icon() {
 
 workspace_font() {
   case "$1" in
-    chatgpt)
-      echo "$FONT_FA_BRANDS"
+    ai|music|messages|notes|timer)
+      echo "SF Pro:Regular:14.5"
       ;;
 
     1|2|3|4|5|6|7|8)
@@ -203,9 +203,10 @@ sketchybar \
   --add item workspace_observer left \
   --set workspace_observer \
     drawing=off \
+    update_freq=0 \
     updates=on \
     script="/bin/bash '$PLUGIN_DIR/aerospace.sh'$WORKSPACE_ARGS" \
-  --subscribe workspace_observer aerospace_workspace_change
+  --subscribe workspace_observer aerospace_workspace_change front_app_switched system_woke
 
 
 ##### Clock #####

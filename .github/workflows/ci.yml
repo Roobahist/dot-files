@@ -18,3 +18,5 @@ jobs:
         run: |
           bash -n apply.sh install.sh setup-global-gitignore.sh
           find karabiner sketchybar -type f -name '*.sh' -exec bash -n {} \;
+      - name: Validate bounded wallpaper extraction
+        run: python3 scripts/test-wallpaper-accent.py
