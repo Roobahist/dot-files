@@ -16,7 +16,7 @@ jobs:
       - run: python3 scripts/check-public.py
       - name: Check shell syntax
         run: |
-          bash -n apply.sh install.sh setup-global-gitignore.sh macos/apply.sh
+          bash -n apply.sh install.sh setup-global-gitignore.sh macos/apply.sh sketchybar/sketchybarrc
           find karabiner sketchybar -type f -name '*.sh' -exec bash -n {} \;
       - name: Check macOS command wrapper
         run: python3 scripts/test-macos-wrapper.py
