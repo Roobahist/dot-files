@@ -70,3 +70,9 @@ Option+T opens or focuses Telegram; Option+W opens or focuses WhatsApp. Each has
 its own Karabiner rule. These bindings were previously managed by Raycast; remove
 those Raycast app hotkeys when migrating an existing machine so Karabiner is the
 sole owner. No Raycast databases are exported.
+
+## Keyboard backlight shortcuts
+
+The selected Karabiner Portable profile maps **Fn + F1** to decrease keyboard illumination and **Fn + F2** to increase it. The mappings live in `karabiner/karabiner.json`, so applying the linked dotfiles profile preserves them alongside the existing application shortcuts.
+
+Karabiner's **Add your own rule** editor expects a single rule object with `description` and `manipulators`, not the outer `title`/`rules` wrapper used by importable complex-modification files. On some macOS and MacBook combinations, synthetic `illumination_decrement` and `illumination_increment` events may not actually change keyboard brightness, even when the rule loads successfully.
